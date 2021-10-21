@@ -1,11 +1,21 @@
-﻿using System.Collections;
+﻿//Background Controller
+// Alex Dine
+//101264627
+//Oct 20th 2021
+// makes the background flow seamlessly across the screen
+//revised to work in portrait
+
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundController : MonoBehaviour
 {
-    public float verticalSpeed;
-    public float verticalBoundary;
+    public float HorizontalSpeed;
+    public float HorizontalBoundary;
 
     // Update is called once per frame
     void Update()
@@ -13,21 +23,20 @@ public class BackgroundController : MonoBehaviour
         _Move();
         _CheckBounds();
     }
-
+    //resets the background to original pos
     private void _Reset()
     {
-        transform.position = new Vector3(0.0f, verticalBoundary);
+        transform.position = new Vector3(HorizontalBoundary, 0.0f);
     }
-
+    // moves the background
     private void _Move()
     {
-        transform.position -= new Vector3(0.0f, verticalSpeed) * Time.deltaTime;
+        transform.position -= new Vector3(HorizontalSpeed, 0.0f) * Time.deltaTime;
     }
-
+    //checks for when the background is ready to loop
     private void _CheckBounds()
     {
-        // if the background is lower than the bottom of the screen then reset
-        if (transform.position.y <= -verticalBoundary)
+        if (transform.position.x <= -HorizontalBoundary)
         {
             _Reset();
         }

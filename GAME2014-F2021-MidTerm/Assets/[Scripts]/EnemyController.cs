@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿//Enemy Controller
+// Alex Dine
+//101264627
+//Oct 20th 2021
+//controls enemy behaviour
+//revised to work in portrait
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,22 +22,22 @@ public class EnemyController : MonoBehaviour
         _Move();
         _CheckBounds();
     }
-
+    // moves enemies
     private void _Move()
     {
-        transform.position += new Vector3(horizontalSpeed * direction * Time.deltaTime, 0.0f, 0.0f);
+        transform.position += new Vector3(0.0f, horizontalSpeed * direction * Time.deltaTime, 0.0f);
     }
 
     private void _CheckBounds()
     {
-        // check right boundary
-        if (transform.position.x >= horizontalBoundary)
+        // check top boundary
+        if (transform.position.y >= horizontalBoundary)
         {
             direction = -1.0f;
         }
 
-        // check left boundary
-        if (transform.position.x <= -horizontalBoundary)
+        // check bottom boundary
+        if (transform.position.y <= -horizontalBoundary)
         {
             direction = 1.0f;
         }
